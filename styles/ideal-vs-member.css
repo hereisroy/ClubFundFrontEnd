@@ -1,0 +1,38 @@
+#ideal-vs-member-contribution{
+    margin-top: 20px;
+}
+
+#ideal-vs-member-contribution>table{
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#ideal-vs-member-contribution>table th{
+    font-weight: normal;
+}
+
+#ideal-vs-member-contribution>table th:nth-child(2){
+    width: 50px;
+}
+
+#ideal-vs-member-contribution tbody>tr{
+    color: white;
+ }
+
+#ideal-vs-member-contribution tbody.green>tr{
+    background-image: linear-gradient(to right, #037ffc, #5beb34);
+}
+
+#ideal-vs-member-contribution tbody.red>tr{
+    background-image: linear-gradient(to right, #037ffc, tomato);
+}
+
+#ideal-vs-member-contribution td{
+    text-align: center;
+    padding: 5px;
+}
+
+#ideal-vs-member-contribution td:nth-child(2){
+    color: black;
+}

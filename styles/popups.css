@@ -1,0 +1,111 @@
+#login-popup-wrapper{
+    display: none;
+    position: fixed;
+    height: calc(100vh - 200px);
+    min-height: 350px;
+    width: 100vw;
+    bottom: 0px;
+    left: 0px;
+    z-index: 2;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    overflow: hidden;
+}
+
+#login-popup-wrapper.on{
+    display: block;
+}
+
+#login-msg{
+    display: none;
+    padding: 50px;
+    font-size: 20px;
+    text-align: center;
+}
+
+#login-popup{
+    position: absolute;
+    height: 400px;
+    width: 100%;
+    bottom: -400px;
+    left: 0px;
+    background-color: tomato;
+    background-image: linear-gradient(to right, #037ffc, #5beb34);
+    z-index: 3;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    transition: bottom var(--login-popup-transtion-duration);
+}
+
+#login-popup.on{
+    bottom: 0px;
+}
+
+#login-popup>div{
+   width: 80%;
+   margin: 0 auto;
+   border-radius: 10px;
+   background-color: white;
+   padding: 5px;
+}
+
+#login-popup>div#email-container{
+    margin-top: 100px;
+}
+
+#login-popup>div#pwd-container{
+    margin-top: 40px;
+}
+
+#login-popup input{
+    width: 100%;
+    font-size: 20px;
+    padding: 10px;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+}
+
+#login-button{
+    display: block;
+    margin: 0 auto;
+    margin-top: 40px;
+    font-size: 20px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+@media only screen and (min-width: 600px){
+    #login-popup{
+        width: 400px;
+        left: 50%;
+        margin-left: -200px;
+    }
+}
+
+@media only screen and (min-height: 850px){
+    #login-msg{
+        display: block;
+    }
+}
+
+@media only screen and (max-height: 620px){
+    #login-popup{
+        height: 300px;
+        
+    }
+
+    #login-popup input, #login-button{
+        font-size: 16px;
+    }
+
+    #login-popup>div#email-container{
+        margin-top: 30px;
+    }
+
+    #login-popup>div#pwd-container{
+        margin-top: 30px;
+    }
+}

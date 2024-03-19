@@ -1,0 +1,70 @@
+.mfund-card{
+    border: 1px solid dodgerblue;
+    border-radius: 10px;
+    position: relative;
+    height: 160px;
+    margin-bottom: 20px;
+}
+
+.mfund-name{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+@media only screen and (min-width: 600px) {
+    .mfund-card{
+        height: auto;
+        padding: 20px;
+    }
+
+    .mfund-name{
+        top: auto;
+        left: auto;
+        transform: none;
+        display: block;
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        border-bottom: 1px solid dodgerblue;
+        padding: 10px;
+    }
+
+
+    .mfund-current, .mfund-return, .mfund-invested, .mfund-xirr{
+        text-align: center;
+        position: relative;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        left: auto;
+        width: 24%;
+        
+    }
+}
+
+@media only screen and (max-width: 500px){
+
+    .mfund-card{
+        font-size: 16px;
+    }
+
+}
+
+@media only screen and (max-width: 400px){
+
+    .mfund-card{
+        font-size: 14px;
+    }
+
+}
+
+@media only screen and (max-width: 240px){
+                
+    .mfund-card{
+        font-size: 12px;
+    }
+}

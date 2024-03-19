@@ -1,0 +1,62 @@
+#others-contribution>table{
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    text-align: center;
+    max-width: 1200px;
+    font-weight: bold;
+}
+
+#others-contribution-header{
+    position: sticky;
+    top: 0px;
+    background-color: white;
+}
+
+#others-contribution-header th{ 
+    width: 18%;
+    font-weight: normal;   
+    border: 1px solid dodgerblue;
+    padding: 5px;
+    font-size: 12px;
+}
+
+#others-contribution-header th:nth-child(1){
+    width: 28%;
+}
+
+#others-contribution-table tr{
+    border: 1px solid dodgerblue;
+    border-top: none;
+}
+
+#others-contribution-table td{
+    width: 18%;
+    padding: 5px;
+    word-wrap: break-word;
+}
+
+#others-contribution-table td.red{
+    color: tomato;
+}
+
+#others-contribution-table td.green{
+    color: green;
+}
+
+#others-contribution-table td:nth-child(1){
+    width: 28%;
+}
+
+@media only screen and (max-width: 400px){
+
+    #others-contribution-header> th{
+        font-size: 10px;
+        padding: 5px 2px 5px 2px;
+    }
+
+    #others-contribution-table td{
+        padding: 5px 2px 5px 2px;
+    }
+}

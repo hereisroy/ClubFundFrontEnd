@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="styles/index.css">
+        <link rel="stylesheet" href="styles/chart.css">
+        <link rel="stylesheet" href="styles/ideal-vs-member.css">
+        <link rel="stylesheet" href="styles/other-members.css">
+        <link rel="stylesheet" href="styles/net-fund.css">
+        <link rel="stylesheet" href="styles/mfunds.css">
+        <link rel="stylesheet" href="styles/popups.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        
+        <style>
+
+            :root {
+                --login-popup-transtion-duration: 1s;
+            }
+
+            
+        
+        </style>
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div id="wrapper" class="popup">
+            <div id="ideal-vs-member-chart"></div>
+            <div id="ideal-vs-member-contribution" style="display: none;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ideal</th><th></th><th>Member</th>
+                        </tr>
+                    </thead>
+                    <tbody class="red">
+                        <tr>
+                            <td></td><td>CVP</td><td></td>
+                        </tr>
+                        <tr>
+                            <td></td><td>CVI</td><td></td>
+                        </tr>
+                        <tr>
+                            <td></td><td>NC</td><td></td>
+                        </tr>
+                        <tr>
+                            <td></td><td>RMI</td><td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="others-contribution" style="display: none;">
+                <h6>What about others</h6>
+                <table id="others-contribution-header">
+                    <tr>
+                        <thead>
+                            <th>Member</th>
+                            <th>CVP</th>
+                            <th>CVI</th>
+                            <th>NC</th>
+                            <th>RMI</th>
+                        </thead>
+                    </tr>
+                </table>
+                <table id="others-contribution-table">
+                    <tbody></tbody>
+                </table>
+
+            </div>
+            <div id="net-fund-details" style="display: none;">
+                <h6>How we're doing</h6>
+                <div id="net-fund-details-card" class="">
+                    <span id="net-fund-invested">Invested <br>&#8377;<span id="net-fund-invested-value"></span></span>
+                    <span id="net-fund-current">Current <br>&#8377;<span id="net-fund-current-value"></span></span>
+                    <span id="net-fund-return">
+                        Returns <br>
+                        &#8377;<span id="net-fund-return-value"></span>
+                        (<span id="net-fund-return-percentage"></span>%)
+                    </span>
+                    <span id="net-fund-xirr">
+                        XIRR <br>
+                        <span id="net-fund-xirr-value"></span>%
+                    </span>
+                </div>
+        
+            </div>
+            <div id="portfolio" style="display: none;">
+                <h6>Our Portfolio</h6>
+                <div id="mfund-card-container"></div>
+            </div>
+        </div>
+        
+        
+
+        </div>
+        <div id="login-popup-wrapper">
+            <div id="login-msg">
+                When the journey is long <br> we gotta enjoy the view
+                <h2>Rivals</h2>
+            </div>
+            
+            <div id="login-popup">
+                <div id="email-container"><input id="email" type="email" placeholder="Email"></div>
+                <div id="pwd-container"><input id="pwd" type="password" placeholder="Password"></div>
+                <button id="login-button" type="button" onclick="login()">Login</button>
+            </div>
+            
+        </div>
+
+        <script src="scripts/data.js"></script>
+        <script src="scripts/auth.js"></script>
+        <script src="scripts/charts.js"></script>
+        <script src="scripts/template.js"></script>
+        <script src="scripts/popups.js"></script>
+        <script src="scripts/index.js"></script>
+        <script>
+
+            let chart; // for using same chart object
+
+            if(hasValidToken()){
+                Promise.all([loadGCharts, getPublicData, getOverview()])
+                .then((results)=>{
+                    chart = prepareChartForBoth(results[1]).then((res)=>{
+                        drawChartForBoth(res, results[2].current_member, results[1]);
+                        showDivs();
+                        setTimeout(()=>{
+                            hidePopUp('login-popup-wrapper');
+                        }, 200);
+                    })
+                    fillAllPrivateData(results[2], results[1]);  
+                 })
+            } else {
+                
+                chart = Promise.all([loadGCharts, getPublicData])
+                .then((results)=>{
+                    return drawChartForIdealContribution(results[1]);
+                })
+                showPopUp('login-popup');
+            }
+
+            getPublicData.then((res)=>{
+                fillIdealData(res.ideal_member);
+            })
+
+            
+
+            
+
+            
+
+            
+
+            
+
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,86 @@
+#net-fund-details-card{
+    color: white;
+    position: relative;
+    height: 140px;
+}
+
+#net-fund-details-card.green{
+    background-image: linear-gradient(to right, #037ffc, #5beb34);
+}
+
+#net-fund-details-card.red{
+    background-image: linear-gradient(to right, #037ffc, tomato);
+}
+
+#net-fund-current, .mfund-current{
+    
+    display: inline-block;
+    text-align: left;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+#net-fund-return, .mfund-return{
+    display: inline-block;
+    text-align: right;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#net-fund-invested, .mfund-invested{
+    display: inline-block;
+    text-align: left;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+#net-fund-xirr, .mfund-xirr{
+    display: inline-block;
+    text-align: right;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+@media only screen and (min-width: 600px) {
+
+    #net-fund-details-card{
+        height: auto;
+        padding: 20px;
+    }
+
+    #net-fund-current, #net-fund-return, #net-fund-invested, #net-fund-xirr{
+        text-align: center;
+        position: relative;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        left: auto;
+        width: 24%;
+    }
+}
+
+@media only screen and (max-width: 500px){
+
+    #net-fund-details-card{
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 400px){
+
+    #net-fund-details-card{
+        font-size: 14px;
+    }
+
+}
+
+@media only screen and (max-width: 240px){
+                
+    #net-fund-details-card{
+        font-size: 12px;
+    }
+}
