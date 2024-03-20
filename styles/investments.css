@@ -1,0 +1,99 @@
+#investment-container>div:nth-child(1){
+    font-weight: bold;
+    font-size: 0.67em;
+    height: 30px;
+    margin-bottom: 20px;
+
+}
+
+#investment-container>div:nth-child(1)>select{
+    float: right;
+    padding: 5px;
+
+}
+
+.investment-card{
+    margin-bottom: 20px;
+    position: relative;
+    padding: 20px;
+    border: 1px solid tomato;
+    bottom: 0px;
+}
+
+.inv-header{
+    padding-bottom: 10px;
+    border-bottom: 1px solid grey;
+}
+
+.inv-header span:nth-child(2){
+    float: right;
+}
+
+.inv-details{
+    max-width: 350px;
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.inv-details>div{
+    height: 20px;
+}
+
+.inv-details span:nth-child(1){
+    font-weight: bold;
+    color: grey;
+    float: left;
+}
+
+.inv-details span:nth-child(2){
+    float: right;
+}
+
+.inv-other-details-wrapper{
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height var(--inv-transtion-duration);
+}
+
+.inv-others-details{
+    padding-top: 10px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.inv-others-details>div{
+    flex: 1;
+    opacity: 0;
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    max-width: 150px;
+}
+
+.inv-others-details span:nth-child(1){
+    display: block;
+}
+
+@media only screen and (min-width: 800px) {
+    .inv-details{
+        display: flex;
+        max-width: none;
+    }
+
+    .inv-details>div{
+        flex: 1;
+        height: auto;
+    }
+
+    .inv-details span:nth-child(1){
+        display: block;
+        float: none;
+    }
+    .inv-details span:nth-child(2){
+        float: none;
+    }
+}

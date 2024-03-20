@@ -39,20 +39,6 @@ function hasValidToken(){
     return true;
 }
 
-/*
-if(localStorage.getItem('token')!=undefined) {
-    session = parseJwt(localStorage.getItem('token'));
-    //console.log(session);
-} else {
-    getToken('ronitroy547180@gmail.com','RR/rivals').then((res)=>{
-        localStorage.setItem("token", res);
-        session = parseJwt(res);
-        console.log(session);
-    });
-}
-
-*/
-
 function parseJwt(token) {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -61,4 +47,4 @@ function parseJwt(token) {
     }).join(''));
   
     return JSON.parse(jsonPayload);
-  }
+}

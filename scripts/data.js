@@ -39,3 +39,28 @@ function getOverview(){
 
     return overview;
 };
+
+function getInvData(invYear){
+    let invData = new Promise((resolve, reject)=>{
+        const overviewURL = apiDomain+"member/getinvestmentsbyyear";
+        $.ajax({
+            url: overviewURL,
+            type: 'GET',
+            dataType: 'json',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+            data:{
+                year : invYear
+            },
+            success: function(data) {                  
+                resolve(data);
+            },
+            error: function(xhr, status, error) {
+                reject(error);
+            }
+        });
+    })
+
+    return invData;
+};

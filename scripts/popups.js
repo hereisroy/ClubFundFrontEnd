@@ -1,7 +1,7 @@
 function showPopUp(popUpType){
     $('body').css('overflow','hidden');
-    $('#login-popup-wrapper').addClass('on');
     if(popUpType=='login-popup'){
+        $('#login-popup-wrapper').addClass('on');
         setTimeout(()=>{
             $('#login-popup').addClass('on');
         }, 100);

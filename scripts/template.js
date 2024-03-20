@@ -72,9 +72,59 @@ function fillPortfolioData(mFundData){
     })
 }
 
+function fillInvYears(invYears){
+    let invYearsElem = $('#inv-year-select')
+    invYears.forEach(v => {
+        invYearsElem.append(`<option value="${v}">${v}</option>`);
+    });
+}
+
+function fillInvData(invData){
+    let memberId = session.member_id;
+    let html;
+
+    invData.forEach((e, i)=>{
+        html=`<div class="investment-card" onclick="toggleInvOtherDetails(this)" inv-id="${e.investment_id}">`;
+        html+='<div class="inv-header">';
+        html+=`<span class="inv-no">Inv#${e.investment_no}</span>`;
+        let date = getPrettyDate(e.date);
+        html+=`<span class="inv-date">${date}</span>`;
+        html+='</div><div class="inv-details"><div class="fund-wrapper"><span>Fund</span>';
+        let fundName = $(`.mfund-card[fund-id=${e.fund_id}]`).find('.mfund-name').text();
+        html+=`<span>${fundName}</span>`;
+        html+='</div><div class="ammount-invested-wrapper"><span>Ammount Invested</span>';
+        html+=`<span>${e.ammount}</span>`;
+        html+='</div><div class="current-value-wrapper"><span>Current Value</span>';
+        html+=`<span>${e.current_value}</span>`;
+        html+='</div><div class="returns-wrapper"><span>Returns</span>';
+        html+=`<span>${e.returns}</span>`;
+        html+='</div><div class="member-contribution-wrapper"><span>Ideal Contribution</span>';
+        let idealContribution = null;
+        let memberContribution = 0;
+        e.contributions.forEach((c, k)=>{
+            if(c.member_id==idealMemberId) idealContribution = c.ammount;
+            else if((c.member_id==memberId)) memberContribution = c.ammount;
+        })
+        html+=`<span>${idealContribution}</span>`;
+        html+='</div></div><div class="inv-other-details-wrapper"><div class="inv-others-details">';
+        html+=`<div><span>${getMemberName(memberId)}</span><span>${memberContribution}</span></div>`;
+        e.contributions.forEach((c, k)=>{
+            if(c.member_id==idealMemberId || c.member_id==memberId || c.ammount==0) return;
+            html+=`<div><span>${getMemberName(c.member_id)}</span><span>${c.ammount}</span></div>`;
+        })
+        html+='</div></div></div>';
+        
+        $('#investment-wrapper').append(html);
+        
+    });
+
+}
+
 function fillAllPrivateData(overviewData, publicData){
     fillMemberData(overviewData.current_member, publicData.ideal_member);
     fillOtherMembersData(overviewData.others_member_details, publicData.ideal_member);
     fillNetFundData(overviewData.net_fund_details);
     fillPortfolioData(overviewData.mutual_fund_details);
+    fillInvYears(overviewData.investment_years);
+    fillInvData(overviewData.investments);
 }

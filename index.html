@@ -4,11 +4,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" href="styles/index.css">
-        <link rel="stylesheet" href="styles/chart.css">
         <link rel="stylesheet" href="styles/ideal-vs-member.css">
         <link rel="stylesheet" href="styles/other-members.css">
         <link rel="stylesheet" href="styles/net-fund.css">
         <link rel="stylesheet" href="styles/mfunds.css">
+        <link rel="stylesheet" href="styles/investments.css">
         <link rel="stylesheet" href="styles/popups.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,91 +20,7 @@
                 --login-popup-transtion-duration: 1s;
                 --inv-transtion-duration: 1s;
             }
-
-            .investment-card{
-                position: relative;
-                padding: 20px;
-                border: 1px solid tomato;
-            }
-
-            .inv-header{
-                padding-bottom: 10px;
-                border-bottom: 1px solid grey;
-            }
-
-            .inv-header span:nth-child(2){
-                float: right;
-            }
-
-            .inv-details{
-                max-width: 350px;
-                margin: 0 auto;
-                margin-top: 20px;
-                text-align: center;
-            }
-
-            .inv-details>div{
-                height: 20px;
-            }
-
-            .inv-details span:nth-child(1){
-                font-weight: bold;
-                color: grey;
-                float: left;
-            }
-
-            .inv-details span:nth-child(2){
-                float: right;
-            }
-
-            .inv-other-details-wrapper{
-                max-height: 0px;
-                margin-top: 10px;
-                overflow: hidden;
-                transition: max-height var(--inv-transtion-duration);
-            }
-
-            .inv-others-details{
-                text-align: center;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .inv-others-details>div{
-                flex: 1;
-                opacity: 0;
-                border: 1px solid grey;
-                border-radius: 5px;
-                margin: 5px;
-                padding: 5px;
-                max-width: 150px;
-            }
-
-            .inv-others-details span:nth-child(1){
-                display: block;
-            }
-
-            @media only screen and (min-width: 800px) {
-                .inv-details{
-                    display: flex;
-                    max-width: none;
-                }
-
-                .inv-details>div{
-                    flex: 1;
-                    height: auto;
-                }
-
-                .inv-details span:nth-child(1){
-                    display: block;
-                    float: none;
-                }
-                .inv-details span:nth-child(2){
-                    float: none;
-                }
-            }
-        
+  
         </style>
         <script src="https://www.gstatic.com/charts/loader.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -166,65 +82,11 @@
                 <div id="mfund-card-container"></div>
             </div>
             <div id="investment-container">
-                <h6>Investments</h6>
-                <div id="investment-wrapper">
-                    <div class="investment-card" onclick="toggleInvOtherDetails(this)">
-                        <div class="inv-header">
-                            <span class="inv-no">Inv#7</span>
-                            <span class="inv-date">February 19, 2024</span>
-                        </div>
-                        <div class="inv-details">
-                            <div class="fund-wrapper">
-                                <span>Fund</span> 
-                                <span>Quant Small Cap</span>
-                            </div> 
-                            <div class="ammount-invested-wrapper">
-                                <span>Ammount Invested</span> 
-                                <span>1500</span>
-                            </div>
-                            <div class="current-value-wrapper">
-                                <span>Current Value</span> 
-                                <span>1400</span>
-                            </div>
-                            <div class="returns-wrapper">
-                                <span>Returns</span> 
-                                <span>-6.3%</span>
-                            </div>
-                            <div class="member-contribution-wrapper">
-                                <span>Your Contribution</span> 
-                                <span>500</span>
-                            </div>
-                        </div>
-                        <div class="inv-other-details-wrapper">
-                            <div class="inv-others-details">
-                                <div>
-                                    <span>SR</span>
-                                    <span>500</span>
-                                </div>
-                                <div>
-                                    <span>RR</span>
-                                    <span>500</span>
-                                </div>
-                                <div>
-                                    <span>Satya</span>
-                                    <span>500</span>
-                                </div>
-                                <div>
-                                    <span>Jeet</span>
-                                    <span>500</span>
-                                </div>
-                                <div>
-                                    <span>Sagar</span>
-                                    <span>500</span>
-                                </div>
-                                <div>
-                                    <span>Shanku</span>
-                                    <span>500</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div>
+                    <span>Investments</span>
+                    <select id="inv-year-select"></select>
                 </div>
+                <div id="investment-wrapper"></div>
             </div>
         </div>
     
@@ -251,7 +113,7 @@
         <script>
 
             let chart; // for using same chart object
-
+            
             if(hasValidToken()){
                 Promise.all([loadGCharts, getPublicData, getOverview()])
                 .then((results)=>{
@@ -262,6 +124,7 @@
                             hidePopUp('login-popup-wrapper');
                         }, 200);
                     })
+                    initializeGblVars(results[2], results[1]);
                     fillAllPrivateData(results[2], results[1]);  
                  })
             } else {
@@ -277,6 +140,9 @@
                 fillIdealData(res.ideal_member);
             })
 
+            
+            
+
             function toggleInvOtherDetails(e){
 
                 let otherDetailsWrapper = $(e).find('.inv-other-details-wrapper');
@@ -291,7 +157,7 @@
                             
                         }, 500);
                 } else {
-                    let height = otherDetailsWrapper.find('.inv-others-details').height();
+                    let height = otherDetailsWrapper.find('.inv-others-details').outerHeight();
                     otherDetailsWrapper.css('max-height', height);
                     let delay = getCSSDuration('--inv-transtion-duration');
                     otherDetailsWrapper.find('.inv-others-details>div').each((i, e)=>{
