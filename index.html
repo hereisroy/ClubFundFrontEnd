@@ -84,14 +84,14 @@
             <div id="investment-container">
                 <div>
                     <span>Investments</span>
-                    <select id="inv-year-select"></select>
+                    <select id="inv-year-select" onchange="fetchNFillInvData()"></select>
                 </div>
                 <div id="investment-wrapper"></div>
             </div>
         </div>
     
 
-        <div id="login-popup-wrapper">
+        <div id="login-popup-wrapper" style="display: none;">
             <div id="login-msg">
                 When the journey is long <br> we gotta enjoy the view
                 <h2>Rivals</h2>
@@ -113,6 +113,10 @@
         <script>
 
             let chart; // for using same chart object
+
+            getPublicData.then((res)=>{ 
+                fillIdealData(res.ideal_member);
+            })
             
             if(hasValidToken()){
                 Promise.all([loadGCharts, getPublicData, getOverview()])
@@ -124,11 +128,9 @@
                             hidePopUp('login-popup-wrapper');
                         }, 200);
                     })
-                    initializeGblVars(results[2], results[1]);
                     fillAllPrivateData(results[2], results[1]);  
                  })
             } else {
-                
                 chart = Promise.all([loadGCharts, getPublicData])
                 .then((results)=>{
                     return drawChartForIdealContribution(results[1]);
@@ -136,47 +138,17 @@
                 showPopUp('login-popup');
             }
 
-            getPublicData.then((res)=>{
-                fillIdealData(res.ideal_member);
-            })
-
-            
-            
-
-            function toggleInvOtherDetails(e){
-
-                let otherDetailsWrapper = $(e).find('.inv-other-details-wrapper');
-                if(otherDetailsWrapper.height()>0){
-                    otherDetailsWrapper.find('.inv-others-details>div').each((i, e)=>{
-                        let elem = $(e);
-                        let animationDuration = Math.random()*500;
-                        elem.animate({opacity: 0}, animationDuration);
-                    })
-                    otherDetailsWrapper.css('max-height', '0px');
-                    setTimeout(()=>{
-                            
-                        }, 500);
-                } else {
-                    let height = otherDetailsWrapper.find('.inv-others-details').outerHeight();
-                    otherDetailsWrapper.css('max-height', height);
-                    let delay = getCSSDuration('--inv-transtion-duration');
-                    otherDetailsWrapper.find('.inv-others-details>div').each((i, e)=>{
-                        let elem = $(e);
-                        let animationDuration = Math.random()*500;
-                        setTimeout(()=>{
-                            elem.animate({opacity: 1}, animationDuration);
-                        }, delay/2);
-                    })
-                }
+            function fetchNFillInvData(){
+                let selectedYear = $('#inv-year-select').val();
+                Promise.all([getInvData(selectedYear), hideInvz()]).then((results)=>{
+                    let invData = results[0];
+                    fillInvData(invData.investments);
+                })
             }
 
             
-
             
 
-            
-
-            
 
         </script>
     </body>

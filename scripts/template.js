@@ -26,13 +26,13 @@ function fillOtherMembersData(otherMemData, idealData){
         html = `<tr memId=${v.member_id} email=${v.email} is-admin=${v.isAdmin}>`;
         html += `<td>${v.name}</td>`;
         color = parseFloat(v.cvp)<parseFloat(idealData.cvp)? 'red' : 'green';
-        html += `<td class=${color}>${v.cvp}</td>`;
+        html += `<td clas=${color}>${v.cvp}</td>`;
         color = parseFloat(v.cvi)<parseFloat(idealData.cvi)? 'red' : 'green';
-        html += `<td class=${color}>${v.cvi}</td>`;
+        html += `<td clas=${color}>${v.cvi}</td>`;
         color = parseFloat(v.nc)<parseFloat(idealData.nc)? 'red' : 'green';
-        html += `<td class=${color}>${v.nc}</td>`;
+        html += `<td clas=${color}>${v.nc}</td>`;
         color = parseFloat(v.rpi)>parseFloat(idealData.rpi)? 'red' : 'green';
-        html += `<td class=${color}>${v.rpi}</td>`;
+        html += `<td clas=${color}>${v.rpi}</td>`;
         html += '</td></tr>';
         tbody.append(html);
     }) 
@@ -84,7 +84,7 @@ function fillInvData(invData){
     let html;
 
     invData.forEach((e, i)=>{
-        html=`<div class="investment-card" onclick="toggleInvOtherDetails(this)" inv-id="${e.investment_id}">`;
+        html=`<div class="investment-card" style="opacity:0;" onclick="toggleInvOtherDetails(this)" inv-id="${e.investment_id}">`;
         html+='<div class="inv-header">';
         html+=`<span class="inv-no">Inv#${e.investment_no}</span>`;
         let date = getPrettyDate(e.date);
@@ -118,9 +118,12 @@ function fillInvData(invData){
         
     });
 
+    showInvz();
+
 }
 
 function fillAllPrivateData(overviewData, publicData){
+    initializeGblVars(overviewData, publicData);
     fillMemberData(overviewData.current_member, publicData.ideal_member);
     fillOtherMembersData(overviewData.others_member_details, publicData.ideal_member);
     fillNetFundData(overviewData.net_fund_details);

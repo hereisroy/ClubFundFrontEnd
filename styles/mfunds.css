@@ -1,9 +1,10 @@
 .mfund-card{
-    border: 1px solid dodgerblue;
     border-radius: 10px;
     position: relative;
     height: 160px;
     margin-bottom: 20px;
+    background-image: linear-gradient(to right, #2C3E50, #4CA1AF);
+    color: white;
 }
 
 .mfund-name{
@@ -29,7 +30,7 @@
         width: 80%;
         margin: 0 auto;
         margin-bottom: 20px;
-        border-bottom: 1px solid dodgerblue;
+        border-bottom: 1px solid white;
         padding: 10px;
     }
 

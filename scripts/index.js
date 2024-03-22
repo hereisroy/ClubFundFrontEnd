@@ -22,3 +22,30 @@ function login(){
         })
     })
 }
+
+function toggleInvOtherDetails(e){
+
+    let otherDetailsWrapper = $(e).find('.inv-other-details-wrapper');
+    if(otherDetailsWrapper.height()>0){
+        otherDetailsWrapper.find('.inv-others-details>div').each((i, e)=>{
+            let elem = $(e);
+            let animationDuration = Math.random()*500;
+            elem.animate({opacity: 0}, animationDuration);
+        })
+        otherDetailsWrapper.css('max-height', '0px');
+        setTimeout(()=>{
+                
+            }, 500);
+    } else {
+        let height = otherDetailsWrapper.find('.inv-others-details').outerHeight();
+        otherDetailsWrapper.css('max-height', height);
+        let delay = getCSSDuration('--inv-transtion-duration');
+        otherDetailsWrapper.find('.inv-others-details>div').each((i, e)=>{
+            let elem = $(e);
+            let animationDuration = Math.random()*500;
+            setTimeout(()=>{
+                elem.animate({opacity: 1}, animationDuration);
+            }, delay/2);
+        })
+    }
+}

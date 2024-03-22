@@ -33,3 +33,32 @@ function getCSSDuration(varName){
     d = parseInt(d);
     return d;
 }
+
+function hideInvz(){
+    let invCards = $('.investment-card');
+    let n = invCards.length;
+    invAnimationDuration = 600;
+    let duration;
+    let invAnimation = new Promise((resolve, reject)=>{
+        invCards.each((i, e)=>{
+            $(e).animate({opacity:0}, invAnimationDuration);
+        })
+        setTimeout(()=>{
+                $('#investment-wrapper').html('');
+                resolve();
+            }, invAnimationDuration);
+    })
+
+    return invAnimation;
+}
+
+function showInvz(){
+    let invCards = $('.investment-card');
+    let n = invCards.length;
+    invAnimationDuration = 600;
+    let duration;
+    invCards.each((i, e)=>{
+        duration = invAnimationDuration*(i+1);
+        $(e).animate({opacity:1}, duration);
+    })
+}
