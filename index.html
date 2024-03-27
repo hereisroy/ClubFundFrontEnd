@@ -145,7 +145,7 @@
             </div>
         </div>
 
-        <div id="login-popup-wrapper" onclick="alertHeightWidth()">
+        <div id="login-popup-wrapper">
             <div id="login-msg">
                 When the journey is long <br> we gotta enjoy the view
                 <h2>Rivals</h2>
@@ -190,12 +190,6 @@
                     return drawChartForIdealContribution(results[1]);
                 })
                 showPopUp('login-popup');
-            }
-
-            function alertHeightWidth(){
-                let height = $(window).height();
-                let width = $(window).width();
-                alert(`Height : ${height} and Width : ${width}`);
             }
 
         </script>
