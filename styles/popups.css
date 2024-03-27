@@ -1,7 +1,7 @@
 #login-popup-wrapper{
     display: none;
     position: fixed;
-    height: calc(100vh - 200px);
+    height: calc(100vh - 260px);
     min-height: 350px;
     width: 100vw;
     bottom: 0px;
@@ -18,7 +18,7 @@
 
 #login-msg{
     display: block;
-    padding: 50px;
+    padding: 0px 50px 50px 50px;
     text-align: center;
 }
 
