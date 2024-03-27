@@ -26,9 +26,9 @@ function hidePopUp(popUpType){
 }
 
 $("#email, #pwd").keyup(function(event) {
+    if($('.exclaimation').css('opacity')=='1') hideExclaimation();
     if($("#email").val().length==0) return;
     if($("#pwd").val().length==0) return;
-    if($('.exclaimation').css('opacity')=='1') hideExclaimation();
     if (event.keyCode === 13) {
         $("#login-button").click();
     }
