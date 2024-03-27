@@ -19,6 +19,17 @@
     bottom: 0px;
     background-image: linear-gradient(to right, #00749c, #0083B0);
     color: white;
+    
+}
+
+.investment-card.dying{
+    animation: dyingInv 2s linear infinite;
+}
+
+@keyframes dyingInv {
+    from{opacity: 1;}
+    50%{opacity: 0.5;}
+    to{opacity: 1;}
 }
 
 .inv-header{

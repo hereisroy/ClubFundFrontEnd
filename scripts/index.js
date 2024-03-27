@@ -30,10 +30,18 @@ function logout(){
 
 function fetchNFillInvData(){
     let selectedYear = $('#inv-year-select').val();
-    Promise.all([getInvData(selectedYear), hideInvz()]).then((results)=>{
+    /*Promise.all([getInvData(selectedYear), ]).then((results)=>{
         let invData = results[0];
         fillInvData(invData.investments);
+    })*/
+    $('.investment-card').addClass('dying');
+    getInvData(selectedYear).then((res)=>{
+        hideInvz().then(()=>{
+            let invData = res;
+            fillInvData(invData.investments);
+        })
     })
+
 }
 
 function toggleInvOtherDetails(e){

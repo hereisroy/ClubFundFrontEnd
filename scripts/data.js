@@ -55,6 +55,7 @@ function getInvData(invYear){
             },
             success: function(data) {                  
                 resolve(data);
+
             },
             error: function(xhr, status, error) {
                 reject(error);
