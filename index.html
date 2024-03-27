@@ -20,6 +20,49 @@
                 --login-popup-transtion-duration: 1s;
                 --inv-transtion-duration: 1s;
             }
+
+            #footer{
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 0px;
+                margin-top: 40px;
+                background-image: url(images/footer.png);
+                background-size: cover;
+                font-weight: bold;
+            }
+        
+            #latest-nav-container{
+                position: absolute;
+                display: inline-block;
+                left : 20%;
+                bottom: 50%;
+            }
+            
+            #logout-container{
+                position: absolute;
+                display: inline-block;
+                width: 60px;
+                right: 5%;
+                bottom: 50%;
+            }
+
+            #logout-button{
+                position: relative;
+                display: inline-block;
+                margin-left: 12px;
+                height: 30px;
+                width: 30px;
+                background-image: url(images/logout.png);
+                background-size: contain;
+                text-align: center;
+            }
+
+            .prevent-select {
+                -webkit-user-select: none; /* Safari */
+                -ms-user-select: none; /* IE 10 and IE 11 */
+                user-select: none; /* Standard syntax */
+            }
   
         </style>
         <script src="https://www.gstatic.com/charts/loader.js"></script>
@@ -89,9 +132,20 @@
                 <div id="investment-wrapper"></div>
             </div>
         </div>
-    
+        
+        <div id="footer" class="prevent-select">
+            <div id="latest-nav-container">
+                <span id="latest-nav-date-label">Latest NAV Date</span><br>
+                <span id="latest-nav-date">25th March</span>
+            </div>
+            <div id="logout-container" onclick="logout()">
+                <span id="logout-button"></span>
+                <br>
+                <span id="logout-label">Logout</span>
+            </div>
+        </div>
 
-        <div id="login-popup-wrapper">
+        <div id="login-popup-wrapper" onclick="alertHeightWidth()">
             <div id="login-msg">
                 When the journey is long <br> we gotta enjoy the view
                 <h2>Rivals</h2>
@@ -138,17 +192,11 @@
                 showPopUp('login-popup');
             }
 
-            function fetchNFillInvData(){
-                let selectedYear = $('#inv-year-select').val();
-                Promise.all([getInvData(selectedYear), hideInvz()]).then((results)=>{
-                    let invData = results[0];
-                    fillInvData(invData.investments);
-                })
+            function alertHeightWidth(){
+                let height = $(window).height();
+                let width = $(window).width();
+                alert(`Height : ${height} and Width : ${width}`);
             }
-
-            
-            
-
 
         </script>
     </body>

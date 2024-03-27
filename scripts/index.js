@@ -23,6 +23,19 @@ function login(){
     })
 }
 
+function logout(){
+    localStorage.removeItem('token')
+    document.location.href="/";
+}
+
+function fetchNFillInvData(){
+    let selectedYear = $('#inv-year-select').val();
+    Promise.all([getInvData(selectedYear), hideInvz()]).then((results)=>{
+        let invData = results[0];
+        fillInvData(invData.investments);
+    })
+}
+
 function toggleInvOtherDetails(e){
 
     let otherDetailsWrapper = $(e).find('.inv-other-details-wrapper');
@@ -49,3 +62,13 @@ function toggleInvOtherDetails(e){
         })
     }
 }
+
+function setFooterHeight(){
+    const heightFactor = 359/2000;
+    let footer = $('#footer');
+    footer.height(footer.width()*heightFactor);
+}
+setFooterHeight();
+$(window).on('resize', ()=>{
+    setFooterHeight();
+})
