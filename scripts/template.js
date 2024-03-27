@@ -122,6 +122,11 @@ function fillInvData(invData){
 
 }
 
+function fillLatestNavDate(latestDate){
+    let d = getPrettyDate(latestDate);
+    $('#latest-nav-date').text(d);
+}
+
 function fillAllPrivateData(overviewData, publicData){
     initializeGblVars(overviewData, publicData);
     fillMemberData(overviewData.current_member, publicData.ideal_member);
@@ -130,4 +135,5 @@ function fillAllPrivateData(overviewData, publicData){
     fillPortfolioData(overviewData.mutual_fund_details);
     fillInvYears(overviewData.investment_years);
     fillInvData(overviewData.investments);
+    fillLatestNavDate(publicData.latest_nav_date);
 }
