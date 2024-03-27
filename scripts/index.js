@@ -25,7 +25,7 @@ function login(){
 
 function logout(){
     localStorage.removeItem('token')
-    document.location.href="/";
+    location.reload();
 }
 
 function fetchNFillInvData(){
