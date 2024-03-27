@@ -25,9 +25,9 @@
 
 #login-popup{
     position: absolute;
-    height: 400px;
+    height: 300px;
     width: 100%;
-    bottom: -400px;
+    bottom: -300px;
     left: 0px;
     background-color: tomato;
     background-image: linear-gradient(to right, #037ffc, #5beb34);
@@ -50,16 +50,15 @@
 }
 
 #login-popup>div#email-container{
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 #login-popup>div#pwd-container{
-    margin-top: 40px;
+    margin-top: 50px;
 }
 
 #login-popup input{
     width: 100%;
-    font-size: 20px;
     padding: 10px;
     outline: none;
     border: none;
@@ -70,7 +69,6 @@
     display: block;
     margin: 0 auto;
     margin-top: 40px;
-    font-size: 20px;
     background-color: white;
     border: none;
     border-radius: 10px;
@@ -85,7 +83,7 @@
     }
 }
 
-@media only screen and (min-height: 850px){
+@media only screen and (min-height: 700px){
     #login-msg{
         display: block;
     }
