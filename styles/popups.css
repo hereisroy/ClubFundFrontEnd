@@ -17,8 +17,10 @@
 }
 
 #login-msg{
-    display: block;
-    padding: 0px 50px 50px 50px;
+    display: none;
+    position: absolute;
+    bottom: 320px;
+    width: 100%;
     text-align: center;
 }
 
