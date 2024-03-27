@@ -1,5 +1,5 @@
 function showDivs(){
-    $('#ideal-vs-member-contribution, #others-contribution, #net-fund-details, #portfolio, #investment-container')
+    $('#ideal-vs-member-contribution, #others-contribution, #net-fund-details, #portfolio, #investment-container, #footer')
     .fadeIn('slow');
 }
 
