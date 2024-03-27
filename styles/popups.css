@@ -59,11 +59,23 @@
 }
 
 #login-popup input{
-    width: 100%;
+    width: calc(100% - 30px);
     padding: 10px;
     outline: none;
     border: none;
     box-sizing: border-box;
+}
+
+.exclaimation{
+    position: relative;
+    display: inline-block;
+    top: 7px;
+    height: 22px;
+    width: 25px;
+    background-image: url(../images/exclaimation.png);
+    background-size: contain;
+    box-sizing: border-box;
+    opacity: 0;
 }
 
 #login-button{

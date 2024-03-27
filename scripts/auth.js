@@ -13,10 +13,11 @@ function getToken(username, pwd){
                 password : pwd
             }),
             success: function(data) {
+                console.log(`Inside success`);
                 resolve(data);
             },
             error: function(xhr, status, error) {
-                reject(error);
+                reject(xhr.status);
             }
         });
     })

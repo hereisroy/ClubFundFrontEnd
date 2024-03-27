@@ -104,8 +104,14 @@
                 <h2>Rivals</h2>
             </div>
             <div id="login-popup">
-                <div id="email-container"><input id="email" type="email" placeholder="Email"></div>
-                <div id="pwd-container"><input id="pwd" type="password" placeholder="Password"></div>
+                <div id="email-container">
+                    <input id="email" type="email" placeholder="Email">
+                    <div class="exclaimation"></div>
+                </div>
+                <div id="pwd-container">
+                    <input id="pwd" type="password" placeholder="Password">
+                    <div class="exclaimation"></div>
+                </div>
                 <button id="login-button" type="button" onclick="login()">Login</button>
             </div>
         </div>
@@ -144,7 +150,6 @@
                 })
                 showPopUp('login-popup');
             }
-
             
 
         </script>

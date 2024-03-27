@@ -46,7 +46,6 @@ function drawChartForIdealContribution(publicData){
     chart.draw(table, options);
     function addPoint(i){
         if(i===invCount){
-            console.log([new Date(publicData.latest_nav_date), parseFloat(idealData.nc)]);
             table.addRow([new Date(publicData.latest_nav_date), parseFloat(idealData.nc)]);
             chart.draw(table, options);
         } else {

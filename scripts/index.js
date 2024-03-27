@@ -6,7 +6,10 @@ function showDivs(){
 function login(){
     let email = $('#email').val();
     let pwd = $('#pwd').val();
-    if(email.length==0 || pwd.length==0) alert('blank!');
+    if(email.length==0 || pwd.length==0) {
+        showExclaimation();
+        return;
+    }
     getToken(email, pwd).then((token)=>{
         localStorage.setItem("token", token);
         session = parseJwt(token);
@@ -20,7 +23,9 @@ function login(){
             showDivs();
             hidePopUp('login-popup-wrapper');
         })
-    })
+    }).catch((err)=>{
+        if(err==400) showExclaimation();
+    });
 }
 
 function logout(){

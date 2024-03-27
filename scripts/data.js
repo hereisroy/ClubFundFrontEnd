@@ -7,7 +7,7 @@ const getPublicData = new Promise((resolve, reject)=>{
         type: 'GET',
         dataType: 'json',
         success: function(data) {
-                resolve(data);
+            resolve(data);
         },
         error: function(xhr, status, error) {
             reject(error);

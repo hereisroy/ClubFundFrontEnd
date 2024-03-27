@@ -24,3 +24,20 @@ function hidePopUp(popUpType){
 
     return promise;
 }
+
+$("#email, #pwd").keyup(function(event) {
+    if($("#email").val().length==0) return;
+    if($("#pwd").val().length==0) return;
+    if($('.exclaimation').css('opacity')=='1') hideExclaimation();
+    if (event.keyCode === 13) {
+        $("#login-button").click();
+    }
+});
+
+function showExclaimation(){
+    $(".exclaimation").animate({opacity: 1}, 500);
+}
+
+function hideExclaimation(){
+    $(".exclaimation").animate({opacity: 0}, 500);
+}
