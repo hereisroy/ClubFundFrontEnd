@@ -1,3 +1,8 @@
+:root {
+    --login-popup-transtion-duration: 1s;
+    --inv-transtion-duration: 1s;
+}
+
 body{
     margin: 0px;
     font-family: "Montserrat", sans-serif;

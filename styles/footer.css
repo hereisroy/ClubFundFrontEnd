@@ -1,0 +1,46 @@
+#footer{
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    margin-top: 40px;
+    background-image: url(../images/footer.png);
+    background-size: cover;
+}
+
+#latest-nav-container{
+    position: absolute;
+    display: inline-block;
+    left : 20%;
+    bottom: 50%;
+}
+
+#logout-container{
+    position: absolute;
+    display: inline-block;
+    width: 60px;
+    right: 5%;
+    bottom: 50%;
+    text-align: center;
+}
+
+#logout-button{
+    position: relative;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    background-image: url(../images/logout.png);
+    background-size: contain;
+}
+
+.prevent-select {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+@media only screen and (max-width: 500px){
+    #footer{
+        font-size: 12px;
+    }
+}
